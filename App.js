@@ -14,24 +14,24 @@ import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
 
-//import { SoundPlayer } from './utils/SoundPlayer';
-const Sound = require('react-native-sound');
+import SoundPlayer from './utils/SoundPlayer';
+//const Sound = require('react-native-sound');
 
 class App extends React.Component {
-  onPlayPress() {
-    console.log('clicked');
-	  console.log('HELLO!');
-	  console.log(Sound);
-  }
+	onPlayPress() {
+		console.log('onPlayPress method');
+		let sp = new SoundPlayer();
+		sp.playSound();
+	}
 
-  render() {
-    return (
-      <View style={styles.body}>
-        <Text style={styles.sectionTitle}>Click to Play1</Text>
-        <Button onPress={this.onPlayPress.bind(this)} title="Play" />
-      </View>
-    );
-  }
+	render() {
+		return (
+			<View style={styles.body}>
+				<Text style={styles.sectionTitle}>Click to Play</Text>
+				<Button onPress={this.onPlayPress.bind(this)} title="Play" />
+			</View>
+		);
+	}
 };
 
 const styles = StyleSheet.create({

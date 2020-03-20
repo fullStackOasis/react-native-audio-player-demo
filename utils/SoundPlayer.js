@@ -2,31 +2,49 @@
  * Really simple demo of https://www.npmjs.com/package/react-native-sound
  */
 const Sound = require('react-native-sound');
+/**
+ * Audio credit:
+ * https://freemusicarchive.org/music/John_Bartmann/Public_Domain_Soundtrack_Music_Album_One/earning-happiness
+ * "Earning Happiness" by John Bartmann licensed under a CC0 1.0 Universal License
+ * https://creativecommons.org/publicdomain/zero/1.0/
+ */
+const FILENAME = 'john_bartmann_04_earning_happiness.mp3';
 
 class SoundPlayer {
+	constructor(props) {
+		console.log("SoundPlayer constructor");
+	};
+	stopSound() {
+		console.log('SoundPlayer.stopSound');
+		this.whoosh.stop();
+	}
 	playSound() {
-		console.log("Got to here");
-		Sound.setCategory('Playback');
-		// Load the sound file 'whoosh.mp3' from the app bundle
-		// See notes below about preloading sounds within initialization code below.
-		let whoosh = new Sound('f.mp3', Sound.MAIN_BUNDLE, (error) => {
+		console.log('SoundPlayer.playSound');
+		let me = this;
+		console.log(me);
+		me.whoosh = new Sound(FILENAME, Sound.MAIN_BUNDLE, error => {
 			if (error) {
 				console.log('failed to load the sound', error);
 				return;
 			}
 			// loaded successfully
-			console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
-
-			// Play the sound with an onEnd callback
-			whoosh.play((success) => {
+			console.log(
+				'duration in seconds: ' +
+				me.whoosh.getDuration() +
+				'number of channels: ' +
+				me.whoosh.getNumberOfChannels()
+			);
+			me.whoosh.play(success => {
 				if (success) {
-					console.log('successfully finished playing');
+				console.log('successfully finished playing');
 				} else {
-					console.log('playback failed due to audio decoding errors');
+				console.log('playback failed due to audio decoding errors');
 				}
 			});
-		});
-
+	    });
+		// Play the sound with an onEnd callback
+		return 0;
+		// All other stuff is not needed right now. Leaving in the code in case we want to use it later!
 		// Reduce the volume by half
 		whoosh.setVolume(0.5);
 

@@ -1,7 +1,6 @@
 /**
- * Start work on simple demo of https://www.npmjs.com/package/react-native-sound
+ * Simple demo of https://www.npmjs.com/package/react-native-sound
  */
-
 import React from 'react';
 import {
   StyleSheet,
@@ -14,22 +13,33 @@ import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
 
+/** Keep all sound functionality in separate utils area */
 import SoundPlayer from './utils/SoundPlayer';
-//const Sound = require('react-native-sound');
 
 class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.soundPlayer = new SoundPlayer();
+	}
+
 	onPlayPress() {
 		console.log('onPlayPress method');
-		let sp = new SoundPlayer();
-		sp.playSound();
+		this.soundPlayer.playSound();
+	}
+
+	onStopPress() {
+		console.log('onPlayPress method');
+		this.soundPlayer.stopSound();
 	}
 
 	render() {
 		return (
-			<View style={styles.body}>
-				<Text style={styles.sectionTitle}>Click to Play</Text>
-				<Button onPress={this.onPlayPress.bind(this)} title="Play" />
-			</View>
+		<View style={styles.body}>
+			<Text style={styles.sectionTitle}>Click to Play</Text>
+			<Button onPress={this.onPlayPress.bind(this)} title="Play" />
+			<Text style={styles.sectionTitle}>Click to Stop</Text>
+			<Button onPress={this.onStopPress.bind(this)} title="Stop" />
+		</View>
 		);
 	}
 };

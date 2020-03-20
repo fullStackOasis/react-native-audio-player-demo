@@ -17,6 +17,7 @@ class SoundPlayer {
 	stopSound() {
 		console.log('SoundPlayer.stopSound');
 		this.whoosh.stop();
+		this.whoosh.release();
 	}
 	playSound() {
 		console.log('SoundPlayer.playSound');

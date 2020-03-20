@@ -15,7 +15,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 //import { SoundPlayer } from './utils/SoundPlayer';
-//const Sound = require('react-native-sound');
+const Sound = require('react-native-sound');
 
 class App extends React.Component {
   onPlayPress() {
